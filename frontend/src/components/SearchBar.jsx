@@ -1,48 +1,43 @@
 import { useState } from "react";
+import { FaSearch } from "react-icons/fa";
 
-function SearchBar({ onSearch }) {
+const SearchBar = ({ onSearch }) => {
+  const [city, setCity] = useState("");
 
-    const [city, setCity] = useState("");
+  const handleSearch = () => {
+    if (city.trim()) {
+      onSearch(city);
+      setCity("");
+    }
+  };
 
-    const handleSubmit = (e) => {
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleSearch();
+    }
+  };
 
-        e.preventDefault();
+  return (
+    <div className="glass flex items-center px-5 py-3 rounded-full w-full lg:w-[420px]">
+      <FaSearch className="text-white mr-3 text-lg" />
 
-        if (!city.trim()) return;
+      <input
+        type="text"
+        placeholder="Search city..."
+        value={city}
+        onChange={(e) => setCity(e.target.value)}
+        onKeyDown={handleKeyDown}
+        className="search-input"
+      />
 
-        onSearch(city);
-
-    };
-
-    return (
-
-        <form
-            onSubmit={handleSubmit}
-            className="flex justify-center mt-10"
-        >
-
-            <div className="flex bg-white rounded-full shadow-lg overflow-hidden">
-
-                <input
-                    type="text"
-                    placeholder="Search City..."
-                    className="px-6 py-3 outline-none w-80"
-                    value={city}
-                    onChange={(e) => setCity(e.target.value)}
-                />
-
-                <button
-                    className="bg-blue-600 hover:bg-blue-700 text-white px-8"
-                >
-                    Search
-                </button>
-
-            </div>
-
-        </form>
-
-    );
-
-}
+      <button
+        onClick={handleSearch}
+        className="ml-3 bg-indigo-500 hover:bg-indigo-600 px-4 py-2 rounded-full transition"
+      >
+        Search
+      </button>
+    </div>
+  );
+};
 
 export default SearchBar;
