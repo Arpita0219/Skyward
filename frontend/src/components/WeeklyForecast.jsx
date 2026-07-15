@@ -15,7 +15,7 @@ const WeeklyForecast = ({ forecast }) => {
         </span>
       </div>
 
-      <div className="panel rounded-3xl p-3 flex flex-col gap-1">
+      <div className="panel rounded-3xl p-4 flex flex-col gap-1">
         {dailyForecast.map((day, index) => (
           <motion.div
             key={index}
@@ -38,7 +38,7 @@ const WeeklyForecast = ({ forecast }) => {
               {new Date(day.dt * 1000).toLocaleDateString("en-IN", { day: "2-digit", month: "long" })}
             </span>
 
-            <span className="text-sm text-gray-300 w-20 text-right">
+            <span className="text-sm text-gray-300 w-20 text-right pr-1">
               {new Date(day.dt * 1000).toLocaleDateString("en-IN", { weekday: "long" })}
             </span>
           </motion.div>

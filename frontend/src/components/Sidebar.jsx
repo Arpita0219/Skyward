@@ -10,14 +10,14 @@ import {
 } from "react-icons/bs";
 
 const navItems = [
-  { icon: <BsGrid1X2Fill />, active: true },
-  { icon: <BsMap /> },
-  { icon: <BsGeoAlt /> },
-  { icon: <BsBroadcast /> },
-  { icon: <BsCalendar3 /> },
+  { key: "dashboard", icon: <BsGrid1X2Fill /> },
+  { key: "map", icon: <BsMap /> },
+  { key: "locations", icon: <BsGeoAlt /> },
+  { key: "radar", icon: <BsBroadcast /> },
+  { key: "calendar", icon: <BsCalendar3 /> },
 ];
 
-const Sidebar = () => {
+const Sidebar = ({ activeView, onSelect }) => {
   return (
     <motion.aside
       initial={{ x: -40, opacity: 0 }}
@@ -32,13 +32,14 @@ const Sidebar = () => {
         </div>
 
         <nav className="flex flex-col gap-3">
-          {navItems.map((item, i) => (
+          {navItems.map((item) => (
             <motion.button
-              key={i}
+              key={item.key}
+              onClick={() => onSelect(item.key)}
               whileHover={{ scale: 1.08 }}
               whileTap={{ scale: 0.95 }}
               className={`w-11 h-11 rounded-xl flex items-center justify-center text-lg transition ${
-                item.active
+                activeView === item.key
                   ? "bg-indigo-500/90 text-white accent-glow"
                   : "text-gray-400 hover:bg-white/5 hover:text-white"
               }`}

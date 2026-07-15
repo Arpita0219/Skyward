@@ -14,29 +14,29 @@ const WeatherHighlights = ({ weather, forecast }) => {
         <WindStatusCard forecast={forecast} weather={weather} />
         <UVIndexGauge />
 
-        <motion.div whileHover={{ y: -4 }} className="panel rounded-3xl p-5">
+        <motion.div whileHover={{ y: -4 }} className="panel rounded-3xl p-6">
           <div className="flex items-center gap-2 text-cyan-300 text-lg mb-3">
             <FaTint />
           </div>
           <h3 className="text-sm text-gray-300">Humidity</h3>
-          <div className="flex items-end justify-between mt-2">
-            <p className="text-3xl font-bold">{weather.main.humidity}%</p>
-            <p className="text-xs text-gray-400 text-right max-w-[110px]">
+          <div className="flex items-end justify-between mt-2 gap-3">
+            <p className="text-3xl font-bold shrink-0">{weather.main.humidity}%</p>
+            <p className="text-xs text-gray-400 text-right max-w-[120px] pr-1">
               Dew point is {Math.round(weather.main.temp - 5)}° right now
             </p>
           </div>
         </motion.div>
 
-        <motion.div whileHover={{ y: -4 }} className="panel rounded-3xl p-5">
+        <motion.div whileHover={{ y: -4 }} className="panel rounded-3xl p-6">
           <div className="flex items-center gap-2 text-yellow-300 text-lg mb-3">
             <FaEye />
           </div>
           <h3 className="text-sm text-gray-300">Visibility</h3>
-          <div className="flex items-end justify-between mt-2">
-            <p className="text-3xl font-bold">
+          <div className="flex items-end justify-between mt-2 gap-3">
+            <p className="text-3xl font-bold shrink-0">
               {weather.visibility ? Math.round(weather.visibility / 1000) : "--"}
             </p>
-            <p className="text-xs text-gray-400 text-right max-w-[110px]">
+            <p className="text-xs text-gray-400 text-right max-w-[120px] pr-1">
               {weather.visibility && weather.visibility < 5000
                 ? "Haze is affecting visibility"
                 : "Clear conditions"}
