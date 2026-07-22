@@ -11,6 +11,7 @@ import WeatherMap from "../components/WeatherMap";
 import useWeather from "../hooks/useWeather";
 import WeatherDetailCard from "../components/WeatherDetailCard";
 import Loading from "../components/Loading";
+import SavedLocations from "../components/SavedLocations";
 
 const Home = () => {
   const { weather, forecast, loading, error, fetchWeather } = useWeather("Bengaluru");
@@ -83,11 +84,17 @@ if (loading) {
               </div>
             )}
 
+           
             {activeView === "locations" && (
-              <div className="panel rounded-3xl p-8 text-gray-300">
-                Saved locations view — coming soon.
-              </div>
-            )}
+  <div className="flex justify-center pt-4">
+    <SavedLocations
+      onSelectCity={(city) => {
+        fetchWeather(city);
+        setActiveView("dashboard");
+      }}
+    />
+  </div>
+)}
 
             {activeView === "radar" && (
               <div className="panel rounded-3xl p-8 text-gray-300">
