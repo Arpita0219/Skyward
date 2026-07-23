@@ -12,6 +12,7 @@ import useWeather from "../hooks/useWeather";
 import WeatherDetailCard from "../components/WeatherDetailCard";
 import Loading from "../components/Loading";
 import SavedLocations from "../components/SavedLocations";
+import RadarView from "../components/RadarView";
 
 const Home = () => {
   const { weather, forecast, loading, error, fetchWeather } = useWeather("Bengaluru");
@@ -96,11 +97,15 @@ if (loading) {
   </div>
 )}
 
-            {activeView === "radar" && (
-              <div className="panel rounded-3xl p-8 text-gray-300">
-                Radar view — coming soon.
-              </div>
-            )}
+            
+               
+
+
+{activeView === "radar" && (
+  <div className="flex justify-center pt-4">
+    <RadarView weather={weather} />
+  </div>
+)}
 
             {activeView === "calendar" && (
               <div className="flex justify-center">
